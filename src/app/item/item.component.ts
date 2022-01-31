@@ -1,6 +1,6 @@
 // item.component.ts
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-item',
@@ -9,18 +9,22 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ItemComponent {
 
-  @Input() item: any;
+  @Input() itemObj: any;
 
   @Output() emitItem = new EventEmitter();
 
   constructor() {
   }
 
-  sendDataToParent(item: any) {
+  addItem(item: any) {
     this.emitItem.emit(item);
   }
 
+  ngOnChanges() {
+    console.log('I got intimated..')
+  }
+
   printItems() {
-    return this.item;
+    return this.itemObj;
   }
 }

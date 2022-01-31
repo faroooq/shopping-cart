@@ -1,7 +1,7 @@
 // item-list.component.ts
 
-import { Component, ContentChild, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { AppComponent } from '../app.component';
+import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
 import { ItemComponent } from '../item/item.component';
 
 @Component({
@@ -11,33 +11,16 @@ import { ItemComponent } from '../item/item.component';
 })
 export class ItemListComponent {
 
+  itemList: Array<Object> = [];
   cartItems: Array<Object> = [];
 
-  @ViewChild(ItemComponent) itemView!: ItemComponent;
+  constructor(router: Router) { }
 
-  @ViewChildren(ItemComponent) itemChildren!: QueryList<ItemComponent>;
+  @ViewChild(ItemComponent) viewItem!: ItemComponent;
 
-  @ViewChild("header") headerEl!: ElementRef;
+  // @ViewChild("header") tempRef!: ElementRef;
 
-  itemList: { name: string; price: string; description: string; image: string; }[] = [];
-
-  constructor() { }
-
-  ngAfterViewInit() {
-
-    console.log(`ngAfterViewInit - headerEl is ${this.headerEl}`);
-
-    this.headerEl.nativeElement.textContent = "Best Available Models";
-
-    // @ViewChild - We get only one item.
-    console.log('**** ' + this.itemView.printItems())
-
-    // @ViewChildren - We get all items using the class QueryList
-    let item: ItemComponent[] = this.itemChildren.toArray();
-    for (let i = 0; i < item.length; i++) {
-      console.log(item[i].printItems());
-    }
-  }
+  @ViewChildren(ItemComponent) viewAllItems!: QueryList<ItemComponent>;
 
   ngOnInit() {
     this.itemList = [
@@ -62,8 +45,12 @@ export class ItemListComponent {
     ]
   }
 
-  addItem(item: any) {
+  ngAfterViewInit() {
+    // this.tempRef.nativeElement.textContent = "Best Available Models";
+  }
+
+  getItem(item: any) {
     this.cartItems.push(item);
-    console.log(JSON.stringify(this.cartItems))
+    // console.log(JSON.stringify(this.cartItems.length))
   }
 }
