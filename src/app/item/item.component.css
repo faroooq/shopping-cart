@@ -1,0 +1,40 @@
+/* item.component.css */
+img {
+    width: 100%;
+  }
+.card {
+  border-radius: 7px;
+  box-shadow: 0 0 20px 10px #f3f3f3;
+  overflow: hidden;
+  margin: 1rem;
+}
+.card:hover {
+  color: var(--color-black);
+  border: 1px solid darkblue;
+}
+.card__header,
+.card__body {
+  padding: 2rem 3rem;
+}
+/* We added .card--primary first and then followed by .card__header */
+.card--primary .card__header {
+  background: var(--color-primary);
+  color: #fff;
+}
+.card--secondary .card__header {
+  background: var(--color-secondary);
+  color: #fff;
+}
+.card--secondary .badge--secondary {
+  background: #02cdf1;
+}
+.card--enabled {
+  background: #fff;
+}
+.card--enabled:hover {
+  color: #918ca4;
+  cursor: default;
+  border: 1px solid lightgrey;
+}
+  
+  

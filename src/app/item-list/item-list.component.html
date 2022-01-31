@@ -1,0 +1,13 @@
+<!-- item-list.component.html -->
+
+<!-- Below #header is a template reference -->
+<nav class="navbar navbar-light bg-light p-3">
+    <div class="container-fluid">
+        <span #header class="navbar-brand mb-0 h1">View Mobile Models</span>
+    </div>
+</nav>
+<div class="grid grid--1X3 m-3">
+    <div *ngFor="let item of itemList">
+        <app-item [item]="item" (emitItem)="addItem($event)"></app-item>
+    </div>
+</div>

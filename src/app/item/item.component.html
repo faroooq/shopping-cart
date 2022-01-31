@@ -1,0 +1,24 @@
+<!-- item.component.html -->
+<div class="card card--secondary m-2">
+    <div class="m-2">
+        <img width="50%" height="450px" src="{{item?.image}}" />
+    </div>
+    <div class="p-3">
+        <h4 class="card-title">{{item?.name}}</h4>
+        <p class="card-text">
+            <strong>Price:</strong>
+            {{item?.price}}
+        </p>
+        <p class="card-text">{{item?.description}}</p>
+        <div class="row mt-3 p-2">
+            <div class="col-4 p-0">
+                <a class="btn btn-warning" (click)="sendDataToParent(item)">Add To Cart
+                </a>
+            </div>
+            <div class="col-3 p-0">
+                <a class="btn btn-success">Buy Now
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
