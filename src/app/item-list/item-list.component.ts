@@ -31,7 +31,7 @@ export class ItemListComponent {
         image: "../../assets/images/phone.jpeg"
       },
       {
-        name: "Samsung Galaxy",
+        name: "Samsung",
         price: "INR 88,000/-",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
         image: "../../assets/images/samsung.jpeg"

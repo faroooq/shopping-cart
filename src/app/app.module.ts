@@ -10,6 +10,7 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 import { ErrorComponent } from './error/error.component';
 import { ModelComponent } from './model/model.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ModelComponent } from './model/model.component';
     CheckOutComponent,
     CartSummaryComponent,
     ErrorComponent,
-    ModelComponent
+    ModelComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

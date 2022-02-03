@@ -18,9 +18,16 @@ export class ItemComponent {
   }
 
   gotoCheckoutPage(obj: any) {
-    // this.router.navigate(['check-out', obj.name, '10']);
+
+    // this.router.navigate(['check-out', 'samsung', '10']);
+
     // Routing via optional parameters
-    this.router.navigate(['check-out', { modelID: obj.name, versionID: '10' }]);
+    this.router.navigate(['check-out',
+      {
+        modelID: obj.name,
+        price: obj.price
+      }
+    ]);
   }
 
   addItem(item: any) {
