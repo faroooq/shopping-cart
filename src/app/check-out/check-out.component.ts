@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
@@ -9,10 +9,10 @@ export class CheckOutComponent implements OnInit {
 
   modelID!: string;
   price!: string;
-  constructor(public activatedRoute: ActivatedRouteSnapshot) { }
+  constructor(public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params: { modelID: string; price: string; }) => {
+    this.activatedRoute.params.subscribe(params => {
       // if (params.modelID === 'IPhone') {
       this.modelID = params.modelID;
       this.price = params.price;
