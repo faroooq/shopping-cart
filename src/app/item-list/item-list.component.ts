@@ -25,19 +25,19 @@ export class ItemListComponent {
   ngOnInit() {
     this.itemList = [
       {
-        name: "IPhone 12",
+        name: "IPhone",
         price: "INR 56,000/-",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
         image: "../../assets/images/phone.jpeg"
       },
       {
-        name: "Samsung Galaxy S21 Ultra",
+        name: "Samsung Galaxy",
         price: "INR 88,000/-",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
         image: "../../assets/images/samsung.jpeg"
       },
       {
-        name: "OnePlus 9 Pro",
+        name: "OnePlus",
         price: "INR 59,000/-",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
         image: "../../assets/images/oneplus.jpeg"

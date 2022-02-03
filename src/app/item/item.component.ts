@@ -1,6 +1,7 @@
 // item.component.ts
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item',
@@ -13,7 +14,13 @@ export class ItemComponent {
 
   @Output() emitItem = new EventEmitter();
 
-  constructor() {
+  constructor(public router: Router) {
+  }
+
+  gotoCheckoutPage(obj: any) {
+    // this.router.navigate(['check-out', obj.name, '10']);
+    // Routing via optional parameters
+    this.router.navigate(['check-out', { modelID: obj.name, versionID: '10' }]);
   }
 
   addItem(item: any) {
@@ -21,7 +28,7 @@ export class ItemComponent {
   }
 
   ngOnChanges() {
-    console.log('I got intimated..')
+    // console.log('I got intimated..')
   }
 
   printItems() {
