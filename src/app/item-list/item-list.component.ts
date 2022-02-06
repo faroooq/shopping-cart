@@ -1,6 +1,6 @@
 // item-list.component.ts
 
-import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ContentChild, ElementRef, Input, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemComponent } from '../item/item.component';
 
@@ -11,14 +11,23 @@ import { ItemComponent } from '../item/item.component';
 })
 export class ItemListComponent {
 
-  itemList: Array<Object> = [];
   cartItems: Array<Object> = [];
+  itemList: { name: string; price: string; description: string; image: string; }[] = [];
 
   constructor(router: Router, public activatedRoute: ActivatedRoute) { }
 
-  @ViewChild(ItemComponent) viewItem!: ItemComponent;
-  // @ViewChild("header") tempRef!: ElementRef;
-  // @ViewChildren(ItemComponent) viewAllItems!: QueryList<ItemComponent>;
+  @ViewChild(ItemComponent) itemViewChild!: ItemComponent;
+  @ViewChild("header") tempRef!: ElementRef;
+  @ViewChildren(ItemComponent) viewAllItems!: QueryList<ItemComponent>;
+  @ContentChild(ItemComponent) itemContentChild!: ItemComponent;
+
+  ngAfterViewInit() {
+    // console.log(`ngAfterViewInit - itemViewChild is ${this.itemViewChild}`);
+  }
+
+  ngAfterContentInit() {
+    // console.log(`ngAfterContentInit - itemContentChild is ${this.itemContentChild}`);
+  }
 
   ngOnInit() {
     this.activatedRoute.url.subscribe(url => {
@@ -63,11 +72,7 @@ export class ItemListComponent {
     })
   }
 
-  ngAfterViewInit() {
-    // console.log(this.viewItem)
-  }
-
-  getItem(item: any) {
+  getCartItem(item: any) {
     this.cartItems.push(item);
     // console.log(JSON.stringify(this.cartItems.length))
   }

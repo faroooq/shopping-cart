@@ -1,0 +1,24 @@
+/* offers.component.css */
+
+.grid {
+    display: grid;
+  }
+  @media screen and (min-width: 768px) {
+    .grid--1X2 {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    .grid--1X3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  @media screen and (min-width: 2048px) {
+    .grid--1X4 {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  .discount {
+      color: red;
+  }

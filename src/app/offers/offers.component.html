@@ -1,0 +1,18 @@
+<!-- offers.component.html  -->
+
+<!-- Adding the content in <app-item-list> child tag. We project this using
+    <ng-content> in ItemListComponent -->
+<app-item-list>
+    <div class="container">
+        <h4>Today's Deals. Upto 80% Discount.</h4>
+        <div class="grid grid--1X3 bg-color" style="margin-top: 1rem;">
+            <!-- Iterating the offerList object and passing to nested child <app-item>  
+                using Content Projection Mechanism.-->
+            <app-item *ngFor="let item of offersList" [itemObj]="item">
+                <h2>{{ item.name }}</h2>
+                <h6 class="discount">{{ item.discount }}</h6>
+                <span class="btn btn-danger anchor_cart">Browse More</span>
+            </app-item>
+        </div>
+    </div>
+</app-item-list>

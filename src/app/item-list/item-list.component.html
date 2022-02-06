@@ -1,12 +1,16 @@
+<!-- item-list.component.html -->
 <div class="container">
     <div class="grid grid--1X3 bg-color" style="margin-top: 2rem;">
 
         <!-- <span #header class="navbar-brand mb-0 h1">View Mobile Models</span> -->
-
         <!-- <h2>Total CartItems: {{cartItems.length}}</h2> -->
-
-        <app-item *ngFor="let item of itemList" (emitItem)="getItem($event)" [itemObj]="item"></app-item>
-
-        <!-- <div></div> -->
+        <app-item *ngFor="let item of itemList" (emitItem)="getCartItem($event)" [itemObj]="item">
+            <h2>{{ item.name }}</h2>
+            <h5 class="price">{{ item.price }}</h5>
+            <span class="btn btn-warning anchor_cart m-2">Add To Cart</span>
+            <span class="btn btn-success anchor_buy">Buy Now</span>
+        </app-item>
     </div>
 </div>
+<!-- Projecting from Host Component (OffersComponent) -->
+<ng-content></ng-content>
