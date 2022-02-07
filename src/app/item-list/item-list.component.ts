@@ -19,6 +19,7 @@ export class ItemListComponent {
   @ViewChild(ItemComponent) itemViewChild!: ItemComponent;
   @ViewChild("header") tempRef!: ElementRef;
   @ViewChildren(ItemComponent) viewAllItems!: QueryList<ItemComponent>;
+
   @ContentChild(ItemComponent) itemContentChild!: ItemComponent;
 
   ngAfterViewInit() {

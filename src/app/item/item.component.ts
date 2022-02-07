@@ -19,6 +19,7 @@ export class ItemComponent {
 
   gotoCheckoutPage(obj: any) {
 
+    // Routing via mandatory parameters
     // this.router.navigate(['check-out', 'samsung', '10']);
 
     // Routing via optional parameters

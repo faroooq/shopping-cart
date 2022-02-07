@@ -12,6 +12,8 @@ import { ErrorComponent } from './error/error.component';
 import { ModelComponent } from './model/model.component';
 import { HomeComponent } from './home/home.component';
 import { OffersComponent } from './offers/offers.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './shared/auth.guard';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,14 @@ import { OffersComponent } from './offers/offers.component';
     ErrorComponent,
     ModelComponent,
     HomeComponent,
-    OffersComponent
+    OffersComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

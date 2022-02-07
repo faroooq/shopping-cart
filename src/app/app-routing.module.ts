@@ -4,40 +4,31 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { ErrorComponent } from './error/error.component';
 import { HomeComponent } from './home/home.component';
 import { ItemListComponent } from './item-list/item-list.component';
+import { LoginComponent } from './login/login.component';
 import { ModelComponent } from './model/model.component';
-
-// http://localhost:4200/check-out;modelID=IPhone;versionID=10
-// http://localhost:4200/check-out/IPhone/10
+import { AuthGuard } from './shared/auth.guard';
 
 // app.routing.module.ts file
 const routes: Routes = [
-  {
-    path: 'home', component: HomeComponent
-  },
+  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   {
     path: 'gadgets', component: ModelComponent,
     children: [
       // We have added the below redirect just to have one default tab enabled.
-      {
-        path: "", redirectTo: "mobiles", pathMatch: "full"
-      },
-      {
-        path: 'mobiles', component: ItemListComponent
-      },
-      {
-        path: 'tablets', component: ItemListComponent
-      },
-      {
-        path: 'laptops', component: ItemListComponent
-      }
+      { path: "", redirectTo: "mobiles", pathMatch: "full" },
+      { path: 'mobiles', component: ItemListComponent },
+      { path: 'tablets', component: ItemListComponent },
+      { path: 'laptops', component: ItemListComponent }
     ]
   },
   {
-    path: 'check-out', component: CheckOutComponent
+    path: 'check-out',
+    component: CheckOutComponent,
+    canActivate: [AuthGuard]
   },
-  {
-    path: '**', component: ErrorComponent
-  }
+  { path: '**', component: ErrorComponent }
 ];
 
 @NgModule({
