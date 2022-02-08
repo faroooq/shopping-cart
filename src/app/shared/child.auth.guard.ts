@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot } from "@angular/router";
-import { ItemListComponent } from "../item-list/item-list.component";
+import { CanActivateChild, Router } from "@angular/router";
 
 // auth.guard.ts
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class ChildAuthGuard implements CanActivateChild {
 
     // We hard code this flag for now. 
     // We will retrieve this info from some service later on.
@@ -12,9 +11,9 @@ export class AuthGuard implements CanActivate {
 
     constructor(private router: Router) { }
 
-    canActivate() {
+    canActivateChild() {
         if (this.userLoggedIn) {
-            console.log("AuthGuard");
+            console.log("Child AuthGuard");
             return true;
         } else {
             this.router.navigate(['login']);

@@ -22,6 +22,8 @@ export class ItemListComponent {
 
   @ContentChild(ItemComponent) itemContentChild!: ItemComponent;
 
+  @ContentChild(ItemComponent) itemContentChildren!: QueryList<ItemComponent>;
+
   ngAfterViewInit() {
     // console.log(`ngAfterViewInit - itemViewChild is ${this.itemViewChild}`);
   }

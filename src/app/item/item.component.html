@@ -1,26 +1,28 @@
 <!-- item.component.html -->
-<div class="card card--secondary m-2">
-    <div class="m-2">
-        <img width="100%" style="object-fit: cover;" height="400px" src="{{itemObj?.image}}" />
-    </div>
-    <div class="p-3">
-        <h4 class="card-title">
-            <ng-content select="h2"></ng-content>
-        </h4>
-        <p class="card-text">
-            <ng-content select=".phone"></ng-content>
-        </p>
-        <p class="card-text">
+<div ccCardHover>
+    <div class="card card--secondary m-2">
+        <div class="m-2">
+            <img width="100%" style="object-fit: cover;" height="400px" src="{{itemObj?.image}}" />
+        </div>
+        <div class="p-3">
+            <h4 class="card-title">
+                <ng-content select=".name"></ng-content>
+            </h4>
+            <p class="card-text">
+                <ng-content select="#price"></ng-content>
+            </p>
+            <p class="card-text">
+                <!-- Content Projection using CSS class -->
+                <ng-content select=".discount"></ng-content>
+            </p>
+            <p class="card-text">{{itemObj?.description}}</p>
             <!-- Content Projection using CSS class -->
-            <ng-content select=".discount"></ng-content>
-        </p>
-        <p class="card-text">{{itemObj?.description}}</p>
-        <!-- Content Projection using CSS class -->
-        <a (click)="addItem(itemObj)">
-            <ng-content select=".anchor_cart"></ng-content>
-        </a>
-        <a (click)="gotoCheckoutPage(itemObj)">
-            <ng-content select=".anchor_buy"></ng-content>
-        </a>
+            <a (click)="addItem(itemObj)">
+                <ng-content select=".anchor_cart"></ng-content>
+            </a>
+            <a (click)="gotoCheckoutPage(itemObj)">
+                <ng-content select=".anchor_buy"></ng-content>
+            </a>
+        </div>
     </div>
 </div>

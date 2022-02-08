@@ -6,7 +6,9 @@ import { HomeComponent } from './home/home.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { LoginComponent } from './login/login.component';
 import { ModelComponent } from './model/model.component';
+import { AlertGuard } from './shared/alert.guard';
 import { AuthGuard } from './shared/auth.guard';
+import { ChildAuthGuard } from './shared/child.auth.guard';
 
 // app.routing.module.ts file
 const routes: Routes = [
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'gadgets', component: ModelComponent,
+    canActivateChild: [ChildAuthGuard],
+    canDeactivate: [AlertGuard],
     children: [
       // We have added the below redirect just to have one default tab enabled.
       { path: "", redirectTo: "mobiles", pathMatch: "full" },
@@ -24,8 +28,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'check-out',
-    component: CheckOutComponent,
+    path: 'check-out', component: CheckOutComponent,
     canActivate: [AuthGuard]
   },
   { path: '**', component: ErrorComponent }
