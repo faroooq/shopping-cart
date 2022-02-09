@@ -4,7 +4,7 @@ import { ItemListComponent } from "../item-list/item-list.component";
 
 // auth.guard.ts
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard {
 
     // We hard code this flag for now. 
     // We will retrieve this info from some service later on.
@@ -12,12 +12,12 @@ export class AuthGuard implements CanActivate {
 
     constructor(private router: Router) { }
 
-    canActivate() {
+    canActivate(): boolean {
         if (this.userLoggedIn) {
-            console.log("AuthGuard");
+            console.log('User logged in')
             return true;
         } else {
-            this.router.navigate(['login']);
+            console.log('Un-Autherized User')
             return false;
         }
     }
