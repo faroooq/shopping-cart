@@ -18,6 +18,7 @@ import { CardHoverDirective } from './shared/card-hover.directive';
 import { ChildAuthGuard } from './shared/child.auth.guard';
 import { AlertGuard } from './shared/alert.guard';
 import { RainbowDirective } from './shared/rainbow.directive';
+import { ImagePipe } from './shared/image.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { RainbowDirective } from './shared/rainbow.directive';
     OffersComponent,
     LoginComponent,
     CardHoverDirective,
-    RainbowDirective
+    RainbowDirective,
+    ImagePipe
   ],
   imports: [
     BrowserModule,
