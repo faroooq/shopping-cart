@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-check-out',
@@ -10,43 +10,57 @@ export class CheckOutComponent implements OnInit {
 
   modelID!: string;
   price!: string;
-  myform!: FormGroup;
+
   countries: string[] = [
     'India',
     'USA',
     'Germany',
     'Britan'
-  ]
+  ];
+  myform!: FormGroup;
+  firstName!: FormControl;
+  lastName!: FormControl;
+  email!: FormControl;
+  address!: FormControl;
+  country!: FormControl;
 
   constructor(public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
-    this.myform = new FormGroup({
-      name: new FormGroup({
-        firstName: new FormControl(),
-        lastName: new FormControl(),
-      }),
-      email: new FormControl(),
-      address: new FormControl(),
-      country: new FormControl()
-    });
+    this.createFormControls();
+    this.createForm();
 
     this.activatedRoute.params.subscribe(params => {
-      // if (params.modelID === 'IPhone') {
       this.modelID = params.modelID;
       this.price = params.price;
-      //   console.log('make a IPhone api call to get all the iphone related info')
-      // } else if (params.modelID === 'Samsung') {
-      // this.modelID = params.modelID;
-      // this.price = params.price;
-      //   console.log('make a Samsung api call to get all the samsung related info')
-      // }
-    }
-    )
+    })
   }
 
-  onSubmit() {
+  createFormControls() {
+    this.firstName = new FormControl('', Validators.required);
+    this.lastName = new FormControl('', Validators.required);
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.pattern("[^ @]*@[^ @]*")
+    ]);
+    this.address = new FormControl('', Validators.required);
+    this.country = new FormControl('', Validators.required);
+  }
+
+  createForm() {
+    this.myform = new FormGroup({
+      name: new FormGroup({
+        firstName: this.firstName,
+        lastName: this.lastName,
+      }),
+      email: this.email,
+      address: this.address,
+      country: this.country
+    });
+  }
+
+  submit() {
     if (this.myform.valid) {
       console.log("Form Submitted! " + JSON.stringify(this.myform.value));
     }

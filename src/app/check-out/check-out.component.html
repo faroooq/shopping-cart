@@ -54,41 +54,62 @@
             </div>
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Billing address</h4>
-                <form (ngSubmit)="onSubmit()" [formGroup]="myform" class="needs-validation" novalidate>
+
+                <form (ngSubmit)="submit()" [formGroup]="myform" class="needs-validation" novalidate>
                     <div class="row g-3">
-                        <fieldset formGroupName="name">
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <label for="firstName" class="form-label">First name</label>
-                                    <input type="text" class="form-control" formControlName="firstName" required>
+                        <fieldset class="row col-sm-12" formGroupName="name">
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">First name</label>
+                                <div class="form-group" [ngClass]="{
+                                    'has-danger': firstName.invalid  && (firstName.dirty || firstName.touched),
+                                    'has-success': firstName.valid  && (firstName.dirty || firstName.touched)
+                                 }">
+                                    <input type="text" class="form-control" formControlName="firstName">
                                 </div>
-                                <div class="col-sm-6">
-                                    <label for="lastName" class="form-label">Last name</label>
-                                    <input type="text" class="form-control" formControlName="lastName" required>
+                                <div class="form-control-feedback" *ngIf="firstName.invalid && firstName.dirty">
+                                    FirstName is invalid
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Last name</label>
+                                <div class="form-group" [ngClass]="{
+                                    'has-danger': lastName.invalid  && (lastName.dirty || lastName.touched),
+                                    'has-success': lastName.valid  && (lastName.dirty || lastName.touched)
+                                 }">
+                                    <input type="text" class="form-control" formControlName="lastName">
+                                </div>
+                                <div class="form-control-feedback" *ngIf="lastName.invalid && lastName.dirty">
+                                    LastName is invalid
                                 </div>
                             </div>
                         </fieldset>
                         <div class="col-12">
                             <label for="email" class="form-label">Email <span
                                     class="text-muted">(Optional)</span></label>
-                            <input type="email" class="form-control" formControlName="email" required>
+                            <div class="form-group" [ngClass]="{
+                                'has-danger':email.invalid && (email.dirty || email.touched),
+                                'has-success': email.valid && (email.dirty || email.touched)
+                              }">
+                                <input type="email" class="form-control" formControlName="email">
+                                <!-- <pre>Dirty? {{ myform.controls.email.dirty }}</pre>
+                                     <pre>Pristine? {{ myform.controls.email.pristine }}</pre>
+                                     <pre>Touched? {{ myform.controls.email.touched }}</pre>
+                                     <pre>Valid? {{ myform.controls.email.valid }}</pre> -->
+                            </div>
                         </div>
                         <div class="col-sm-6">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" formControlName="address" required>
+                            <input type="text" class="form-control" formControlName="address">
                         </div>
                         <div class="col-sm-6">
                             <label for="country" class="form-label">Country</label>
-                            <select class="form-select" formControlName="country">
-                                <option value="">Please select a language</option>
-                                <option *ngFor="let country of countries" [value]="country">
-                                    {{country}}
-                                </option>
+                            <select class="form-select" id="country" formControlName="country">
+                                <option>Select the country...</option>
+                                <option *ngFor="let country of countries">{{country}}</option>
                             </select>
                         </div>
+                        <button class="btn btn-success" type="submit">Continue to Checkout</button>
                     </div>
-                    <hr class="my-4">
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
                 </form>
                 <pre>{{myform.value | json}}</pre>
             </div>
