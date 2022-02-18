@@ -5,15 +5,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ImagePipe implements PipeTransform {
 
-  transform(value: string, fallback: string): unknown {
+  transform(value: string, fallback: string, forceHttps: boolean = false): string {
 
-    let imageUrl = "";
+    let image = "";
     if (value) {
-      imageUrl = value;
+      image = value;
     } else {
-      imageUrl = fallback;
+      image = fallback;
     }
-    return imageUrl;
+    return image;
   }
 }
-

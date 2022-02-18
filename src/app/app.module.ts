@@ -19,6 +19,9 @@ import { ChildAuthGuard } from './shared/child.auth.guard';
 import { AlertGuard } from './shared/alert.guard';
 import { RainbowDirective } from './shared/rainbow.directive';
 import { ImagePipe } from './shared/image.pipe';
+import { FooterComponent } from './footer/footer.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -35,11 +38,13 @@ import { ImagePipe } from './shared/image.pipe';
     LoginComponent,
     CardHoverDirective,
     RainbowDirective,
-    ImagePipe
+    ImagePipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [AuthGuard, ChildAuthGuard, AlertGuard],
   bootstrap: [AppComponent]
