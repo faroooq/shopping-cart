@@ -17,8 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'gadgets', component: ModelComponent,
-    canActivate: [AuthGuard],
-    canActivateChild: [ChildAuthGuard],
+    // canActivateChild: [ChildAuthGuard],
     children: [
       // We have added the below redirect just to have one default tab enabled.
       { path: "", redirectTo: "mobiles", pathMatch: "full" },
@@ -29,6 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'check-out', component: CheckOutComponent,
+    canActivate: [AuthGuard],
     canDeactivate: [AlertGuard]
   },
   { path: '**', component: ErrorComponent }

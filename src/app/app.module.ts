@@ -20,7 +20,7 @@ import { AlertGuard } from './shared/alert.guard';
 import { RainbowDirective } from './shared/rainbow.directive';
 import { ImagePipe } from './shared/image.pipe';
 import { FooterComponent } from './footer/footer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -44,6 +44,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [AuthGuard, ChildAuthGuard, AlertGuard],
