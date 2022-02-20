@@ -14,7 +14,9 @@ import { ChildAuthGuard } from './shared/child.auth.guard';
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login', component: LoginComponent
+  },
   {
     path: 'gadgets', component: ModelComponent,
     // canActivateChild: [ChildAuthGuard],
@@ -28,8 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'check-out', component: CheckOutComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [AlertGuard]
+    canActivate: [AuthGuard]
   },
   { path: '**', component: ErrorComponent }
 ];

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from "@angular/router";
+import { SharedService } from "./shared.service";
 
 // auth.guard.ts
 @Injectable()
@@ -7,18 +8,26 @@ export class AuthGuard {
 
     // We hard code this flag for now. 
     // We will retrieve this info from some service later on.
-    userLoggedIn: boolean = true;
+    // userLoggedIn: boolean = false;
 
-    constructor(public router: Router) { }
+    constructor(
+        public router: Router,
+        public sharedService: SharedService
+    ) { }
 
-    canActivate(): boolean {
-        if (this.userLoggedIn) {
+    canActivate(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): boolean {
+        console.log("Auth Guard");
+        console.log(route.params);
+        console.log(state.url);
+        if (this.sharedService.isLoggedIn()) {
             console.log('User logged in')
-            this.router.navigate(['check-out']);
             return true;
         } else {
-            console.log('Un-Autherized User')
-            this.router.navigate(['login']);
+            console.log('Un-Authorized User')
+            this.router.navigate(['login'])
             return false;
         }
     }

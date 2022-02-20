@@ -21,6 +21,7 @@ import { RainbowDirective } from './shared/rainbow.directive';
 import { ImagePipe } from './shared/image.pipe';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedService } from './shared/shared.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthGuard, ChildAuthGuard, AlertGuard],
+  providers: [AuthGuard, ChildAuthGuard, AlertGuard, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

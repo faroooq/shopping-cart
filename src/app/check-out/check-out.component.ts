@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { SharedService } from '../shared/shared.service';
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
@@ -24,16 +25,28 @@ export class CheckOutComponent implements OnInit {
   address!: FormControl;
   country!: FormControl;
 
-  constructor(public activatedRoute: ActivatedRoute) { }
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public sharedService: SharedService
+  ) { }
 
   ngOnInit(): void {
 
     this.createFormControls();
     this.createForm();
 
+    this.sharedService.dataChangeObserver.subscribe((data) => {
+      console.log(data)
+    })
+
+    this.sharedService.paramsChangeObserver.subscribe((data) => {
+      console.log('New User: ' + JSON.stringify(data))
+    })
+
     this.activatedRoute.params.subscribe(params => {
       this.modelID = params.modelID;
       this.price = params.price;
+      console.log('Existing User: ' + JSON.stringify(params))
     })
   }
 

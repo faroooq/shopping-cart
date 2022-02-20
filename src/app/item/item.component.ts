@@ -2,6 +2,7 @@
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedService } from '../shared/shared.service';
 
 @Component({
   selector: 'app-item',
@@ -14,7 +15,7 @@ export class ItemComponent {
 
   @Output() emitItem = new EventEmitter();
 
-  constructor(public router: Router) {
+  constructor(public router: Router, public sharedService: SharedService) {
   }
 
   gotoCheckoutPage(obj: any) {
@@ -22,6 +23,11 @@ export class ItemComponent {
     // Routing via mandatory parameters
     // this.router.navigate(['check-out', obj.name, obj.price]);
 
+    this.sharedService.setLoggedIn(false);
+    this.sharedService.setParams({
+      modelID: obj.name,
+      price: obj.price
+    })
     // Routing via optional parameters
     this.router.navigate(['check-out',
       {
