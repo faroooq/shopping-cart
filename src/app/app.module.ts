@@ -22,7 +22,8 @@ import { ImagePipe } from './shared/image.pipe';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from './shared/shared.service';
-
+import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpWrapperService } from './shared/http-wrapper.service';
 
 @NgModule({
   declarations: [
@@ -46,9 +47,17 @@ import { SharedService } from './shared/shared.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [AuthGuard, ChildAuthGuard, AlertGuard, SharedService],
+  providers: [
+    AuthGuard,
+    ChildAuthGuard,
+    AlertGuard,
+    SharedService,
+    HttpClient,
+    HttpWrapperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

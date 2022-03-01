@@ -16,11 +16,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.searchField = new FormControl();
     this.searchField.valueChanges.pipe(
-      debounceTime(400),
-      distinctUntilChanged())
+      debounceTime(800),
+      distinctUntilChanged()
+    )
       .subscribe(term => {
         this.searches.push(term);
         console.log(this.searches)
+        // API
+        // DB
       });
   }
 }
