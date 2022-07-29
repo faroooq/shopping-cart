@@ -1,23 +1,14 @@
-<!-- model.component.html -->
 <div class="container mt-5">
     <ul class="nav nav-pills">
         <li class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['mobiles']">Mobiles</a>
+            <a class="nav-link" aria-current="page" [routerLinkActive]="['active']" routerLink="mobiles">Mobiles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['tablets']">Tablets</a>
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="tablets">Tablets</a>
         </li>
         <li class="nav-item">
-            <a [routerLinkActive]="['active']" [routerLink]="['laptops']" class="nav-link">Laptops</a>
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="laptops">Laptops</a>
         </li>
     </ul>
 </div>
-
 <router-outlet></router-outlet>
-
-<!-- 1. Today we added this <app-offers>, Just, If you unplug/comment this you 
-        won't get the offers section.
-     2. Like this you can add any number of HostComponents as you want, but with
-        the select attribute to figure-out the projected content.
- -->
-<!-- <app-offers></app-offers> -->

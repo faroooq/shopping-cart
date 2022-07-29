@@ -1,4 +1,4 @@
-/* item-list.component.css */
+
 .grid {
     display: grid;
   }
@@ -17,3 +17,13 @@
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
+
+  .button-itemlist {
+    background-color: aqua;
+  } 
+
+  /* 
+  1. It will allow the parent CSS or Global CSS 
+  2. If we add any CSS to this specific item-list component
+  it wont leak outside
+  */

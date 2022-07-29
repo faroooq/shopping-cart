@@ -7,23 +7,16 @@ import { ItemComponent } from './item/item.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CheckOutComponent } from './check-out/check-out.component';
-import { CartSummaryComponent } from './cart-summary/cart-summary.component';
-import { ErrorComponent } from './error/error.component';
 import { ModelComponent } from './model/model.component';
 import { HomeComponent } from './home/home.component';
-import { OffersComponent } from './offers/offers.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard';
 import { CardHoverDirective } from './shared/card-hover.directive';
-import { ChildAuthGuard } from './shared/child.auth.guard';
 import { AlertGuard } from './shared/alert.guard';
 import { RainbowDirective } from './shared/rainbow.directive';
-import { ImagePipe } from './shared/image.pipe';
-import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedService } from './shared/shared.service';
-import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
-import { HttpWrapperService } from './shared/http-wrapper.service';
+import { DefaultPipe } from './shared/default.pipe';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -32,16 +25,12 @@ import { HttpWrapperService } from './shared/http-wrapper.service';
     ItemListComponent,
     NavbarComponent,
     CheckOutComponent,
-    CartSummaryComponent,
-    ErrorComponent,
     ModelComponent,
     HomeComponent,
-    OffersComponent,
     LoginComponent,
     CardHoverDirective,
     RainbowDirective,
-    ImagePipe,
-    FooterComponent
+    DefaultPipe
   ],
   imports: [
     BrowserModule,
@@ -52,11 +41,8 @@ import { HttpWrapperService } from './shared/http-wrapper.service';
   ],
   providers: [
     AuthGuard,
-    ChildAuthGuard,
     AlertGuard,
-    SharedService,
-    HttpClient,
-    HttpWrapperService
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })

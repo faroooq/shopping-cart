@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'imageUrl'
+  name: 'default'
 })
-export class ImagePipe implements PipeTransform {
+export class DefaultPipe implements PipeTransform {
 
-  transform(value: string, fallback: string, forceHttps: boolean = false): string {
-
+  transform(value: string, fallback: string): string {
     let image = "";
     if (value) {
       image = value;

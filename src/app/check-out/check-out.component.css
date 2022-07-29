@@ -1,28 +1,11 @@
-.container {
-    max-width: 960px;
-  }  
-
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
-
+/* check-out.component.css */
 .has-danger {
-   border: 1px solid red;
-}
-
-.has-success {
-   border: 1px solid green;
-}
-.form-control-feedback {
-  color: red;
-}
+    border: 1px solid red;
+ }
+ 
+ .has-success {
+    border: 1px solid green;
+ }
+ .form-control-feedback {
+   color: red;
+ }

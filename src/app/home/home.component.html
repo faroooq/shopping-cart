@@ -1,16 +1,21 @@
-<!-- home.component.html -->
 <div class="container mt-5">
-    <h1 style="text-align: center;">Welcome to the NexTrends shopping cart</h1>
-    <h4 class="mt-5">
+    <h1>Welcome to the shopping cart</h1>
+    <h4>
         <a routerLink="/gadgets">Click here</a> to navigate to the shopping page.
     </h4>
     <hr>
     <div class="mb-3">
-        <label class="mb-3">Search your favorite Product</label>
-        <input type="search" class="form-control" placeholder="Please enter search term" [formControl]="searchField">
-        <hr />
+        <input type="search" class="form-control" [formControl]="searchField">
         <ul>
             <li *ngFor="let search of searches">{{ search }}</li>
         </ul>
     </div>
 </div>
+
+<!-- <div class="container">
+    <div class="card card-block">
+        <h4 class="card-title">AsyncPipe</h4>
+        <p class="card-text" ngNonBindable>{{ seconds }}</p>
+        <p class="card-text">{{ seconds | async }}</p>
+    </div>
+</div> -->

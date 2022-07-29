@@ -1,7 +1,7 @@
-// home.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-home',
@@ -10,20 +10,22 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
+
   searchField!: FormControl;
   searches: string[] = [];
 
   ngOnInit() {
     this.searchField = new FormControl();
+
     this.searchField.valueChanges.pipe(
-      debounceTime(800),
+      debounceTime(400),
       distinctUntilChanged()
     )
       .subscribe(term => {
         this.searches.push(term);
         console.log(this.searches)
-        // API
-        // DB
+        // api or db
       });
   }
+
 }

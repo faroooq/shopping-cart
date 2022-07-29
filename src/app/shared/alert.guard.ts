@@ -1,23 +1,19 @@
-import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanDeactivate, Router, RouterStateSnapshot } from "@angular/router";
-import { CheckOutComponent } from "../check-out/check-out.component";
-import { ModelComponent } from "../model/model.component";
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 
-// alert.guard.ts
-@Injectable()
-export class AlertGuard implements CanDeactivate<CheckOutComponent> {
+@Injectable({
+  providedIn: 'root'
+})
+export class AlertGuard {
 
-    constructor(public router: Router) { }
+  canDeactivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    canDeactivate(
-        component: CheckOutComponent,
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ) {
-        console.log("Alert Guard");
-        console.log(route.params);
-        console.log(state.url);
-        console.log(component);
-        return true;
-    }
+    console.log("Alert Guard");
+    console.log(route.params);
+    return window.confirm("Are you Sure to leave CheckOut?");
+  }
+
 }

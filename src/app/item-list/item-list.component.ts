@@ -1,92 +1,74 @@
-// item-list.component.ts
-
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Component, ContentChild, ElementRef, Input, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ItemComponent } from '../item/item.component';
-import { HttpWrapperService } from '../shared/http-wrapper.service';
 
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.css']
 })
-export class ItemListComponent {
+export class ItemListComponent implements OnInit {
 
-  cartItems: Array<Object> = [];
-  itemList: { name: string; price: string; description: string; image: string; }[] = [];
+  itemList!: Array<{ name: string, price: string, description: string, image: string, hide: boolean }>;
+  name!: string;
+  price!: number;
 
-  constructor(
-    router: Router,
-    public activatedRoute: ActivatedRoute,
-    public httpWrapper: HttpWrapperService) { }
+  @ViewChild(ItemComponent) item!: ItemComponent;
 
-  @ViewChild(ItemComponent) itemViewChild!: ItemComponent;
-  @ViewChild("header") tempRef!: ElementRef;
-  @ViewChildren(ItemComponent) viewAllItems!: QueryList<ItemComponent>;
+  @ViewChildren(ItemComponent) itemChildren!: QueryList<ItemComponent>;
 
-  @ContentChild(ItemComponent) itemContentChild!: ItemComponent;
+  @ViewChildren("text") text!: QueryList<ElementRef>;
 
-  @ContentChild(ItemComponent) itemContentChildren!: QueryList<ItemComponent>;
-
-  ngAfterViewInit() {
-    // console.log(`ngAfterViewInit - itemViewChild is ${this.itemViewChild}`);
+  constructor(public httpClient: HttpClient) {
   }
 
-  ngAfterContentInit() {
-    // console.log(`ngAfterContentInit - itemContentChild is ${this.itemContentChild}`);
+  changeFromParent() {
+    // this.data += 1;
+    this.itemList.push({
+      name: "IPhone 17",
+      price: "INR 56,000/-",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
+      image: "../../assets/images/phone.jpeg",
+      hide: false
+    })
   }
 
-  ngOnInit() {
-    // *** NEED A BACKEND API TO MAKE GET REQUEST
-    this.httpWrapper.get('getAllGadgets').subscribe((data) => {
-      this.itemList = data;
-    });
-    // *** ENABLE THIS FOR MOCK RESPONSE
-    // this.activatedRoute.url.subscribe(url => {
-    //   // console.log(url[0].path)
-    //   if (url[0].path === 'mobiles') {
-    //     this.itemList = [
-    //       {
-    //         name: "IPhone",
-    //         price: "INR 56,000/-",
-    //         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-    //         image: "../../assets/images/phone.jpeg"
-    //       },
-    //       {
-    //         name: "Samsung",
-    //         price: "INR 88,000/-",
-    //         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-    //         image: "../../assets/images/samsung.jpeg"
-    //       },
-    //       {
-    //         name: "OnePlus",
-    //         price: "INR 59,000/-",
-    //         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-    //         image: "../../assets/images/oneplus.jpeg"
-    //       }
-    //     ]
-    //   } else if (url[0].path === 'tablets') {
-    //     this.itemList = [
-    //       {
-    //         name: "Ipad",
-    //         price: "INR 88,000/-",
-    //         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-    //         image: "../../assets/images/ipad.jpeg"
-    //       },
-    //       {
-    //         name: "Samsung Tab",
-    //         price: "INR 68,000/-",
-    //         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-    //         image: "../../assets/images/samsung-tab.jpeg"
-    //       }
-    //     ]
-    //   }
-    // })
+  ngOnInit(): void {
+
+    const headers = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
+
+    this.httpClient.get('http://httpbin.org/get', { headers }).toPromise().then(data =>
+
+      this.itemList = [
+        {
+          name: "IPhone 12",
+          price: "INR 56,000/-",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
+          image: "../../assets/images/all_apple_prod.jpg",
+          hide: false
+        },
+        {
+          name: "Samsung Galaxy Ultra",
+          price: "INR 88,000/-",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
+          image: "../../assets/images/samsung.jpeg",
+          hide: false
+        },
+        {
+          name: "OnePlus 9 Pro",
+          price: "INR 59,000/-",
+          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
+          image: "../../assets/images/oneplus.jpeg",
+          hide: true
+        }
+      ]
+    );
   }
 
-  getCartItem(item: any) {
-    this.cartItems.push(item);
-    // console.log(JSON.stringify(this.cartItems.length))
+  getItem(item: any) {
+    // console.log(item)
   }
+
 }

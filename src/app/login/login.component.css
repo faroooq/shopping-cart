@@ -1,5 +1,4 @@
- /* login.component.css */
- .form-signin {
+.form-signin {
     width: 100%;
     max-width: 330px;
     padding: 15px;
@@ -39,14 +38,3 @@
       font-size: 3.5rem;
     }
   }
-
-.has-danger {
-  border: 1px solid red;
-}
- 
-.has-success {
-  border: 1px solid green;
-}
-.form-control-feedback {
-  color: red;
-}

@@ -1,8 +1,7 @@
 // login.component.ts
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpWrapperService } from '../shared/http-wrapper.service';
-import { SharedService } from '../shared/shared.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,28 +13,29 @@ export class LoginComponent implements OnInit {
   model: LoginModel = new LoginModel();
 
   constructor(
-    public router: Router,
-    public sharedService: SharedService,
-    public httpWrapper: HttpWrapperService) { }
+    public httpClient: HttpClient,
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
     if (this.form.valid) {
-      // console.log("Form!" + JSON.stringify(this.model));
-      this.httpWrapper.post('register', this.model)
-        .subscribe(data => {
-          this.form.reset();
-          this.sharedService.setLoggedIn(true);
-          this.router.navigate(['check-out'])
-        });
+      console.log("Form Submitted!");
+      const body = JSON.stringify(this.form.value);
+      const headers = { 'content-type': 'application/json' }
+      localStorage.setItem("isLoggedIn", "true")
+      // let header = new HttpHeaders();
+      // header.set('username', 'farooq');
+      this.router.navigateByUrl('/gadgets');
+      this.httpClient.post('http://httpbin.org/post', body, { headers }).subscribe(data => data)
+      this.form.reset();
     }
   }
 }
 class LoginModel {
   constructor(
-    public user_name: string = '',
     public email: string = '',
     public password: string = '') {
   }

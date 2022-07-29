@@ -1,8 +1,5 @@
-// item.component.ts
-
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { SharedService } from '../shared/shared.service';
 
 @Component({
   selector: 'app-item',
@@ -15,37 +12,55 @@ export class ItemComponent {
 
   @Output() emitItem = new EventEmitter();
 
-  constructor(public router: Router, public sharedService: SharedService) {
+  toggle(item: any) {
+    item.hide = !item.hide
   }
 
-  gotoCheckoutPage(obj: any) {
-
-    // Routing via mandatory parameters
-    // this.router.navigate(['check-out', obj.name, obj.price]);
-
-    this.sharedService.setLoggedIn(false);
-    this.sharedService.setParams({
-      modelID: obj.name,
-      price: obj.price
-    })
-    // Routing via optional parameters
-    this.router.navigate(['check-out',
-      {
-        modelID: obj.name,
-        price: obj.price
-      }
-    ]);
+  emitData(itemObj: any) {
+    this.emitItem.emit(itemObj)
   }
 
-  addItem(item: any) {
-    this.emitItem.emit(item);
+  gotoCheckout(itemObj: any) {
+    this.router.navigate(['check-out', itemObj.name, itemObj.price])
   }
 
-  ngOnChanges() {
-    // console.log('I got intimated..')
+  constructor(
+    public router: Router
+  ) {
+    // console.log(`new - item is ${this.itemObj}`);
   }
 
-  printItems() {
-    return this.itemObj;
+  // ngOnChanges() {
+  //   console.log(`ngOnChanges - item is ${JSON.stringify(this.itemObj)}`);
+  // }
+
+  ngOnInit() {
+    console.log(`ngOnInit  - item is ${this.itemObj}`);
   }
+
+  // ngDoCheck() {
+  //   console.log("ngDoCheck")
+  // }
+
+  // ngAfterContentInit() {
+  //   console.log("ngAfterContentInit");
+  // }
+
+  // ngAfterContentChecked() {
+  //   console.log("ngAfterContentChecked");
+  // }
+
+  // ngAfterViewInit() {
+  //   console.log("ngAfterViewInit");
+  // }
+
+  // ngAfterViewChecked() {
+  //   console.log("ngAfterViewChecked");
+  // }
+
+  // ngOnDestroy() {
+  //   console.log("ngOnDestroy");
+  // }
+
+
 }
