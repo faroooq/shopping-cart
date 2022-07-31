@@ -39,32 +39,32 @@ export class ItemListComponent implements OnInit {
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
 
-    this.httpClient.get('http://httpbin.org/get', { headers }).toPromise().then(data =>
+    // this.httpClient.get('http://httpbin.org/get', { headers }).toPromise().then(data =>
 
-      this.itemList = [
-        {
-          name: "IPhone 12",
-          price: "INR 56,000/-",
-          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-          image: "../../assets/images/all_apple_prod.jpg",
-          hide: false
-        },
-        {
-          name: "Samsung Galaxy Ultra",
-          price: "INR 88,000/-",
-          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-          image: "../../assets/images/samsung.jpeg",
-          hide: false
-        },
-        {
-          name: "OnePlus 9 Pro",
-          price: "INR 59,000/-",
-          description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-          image: "../../assets/images/oneplus.jpeg",
-          hide: true
-        }
-      ]
-    );
+    this.itemList = [
+      {
+        name: "IPhone 12",
+        price: "INR 56,000/-",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
+        image: "../../assets/images/all_apple_prod.jpg",
+        hide: false
+      },
+      {
+        name: "Samsung Galaxy Ultra",
+        price: "INR 88,000/-",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
+        image: "../../assets/images/samsung.jpeg",
+        hide: false
+      },
+      {
+        name: "OnePlus 9 Pro",
+        price: "INR 59,000/-",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
+        image: "../../assets/images/oneplus.jpeg",
+        hide: true
+      }
+    ]
+    // );
   }
 
   getItem(item: any) {

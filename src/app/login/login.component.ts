@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       // let header = new HttpHeaders();
       // header.set('username', 'farooq');
       this.router.navigateByUrl('/gadgets');
-      this.httpClient.post('http://httpbin.org/post', body, { headers }).subscribe(data => data)
+      // this.httpClient.post('http://httpbin.org/post', body, { headers }).subscribe(data => data)
       this.form.reset();
     }
   }
